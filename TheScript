@@ -37,6 +37,16 @@ part.Touched:Connect(function(hit)
 		
 		-- 3. Creamos el sonido y lo reproducimos
 		local sound = Instance.new("Sound")
-		sound
-
--- NOTE:Script made by gemini ai
+		sound.Name = "SonidoSusto"
+		sound.SoundId = AUDIO_ID
+		sound.Volume = 1
+		sound.Parent = screenGui
+		sound:Play()
+		
+		-- 4. Esperamos 3 segundos mostrando el jumpscare antes de sacar al jugador
+		task.wait(3)
+		
+		-- 5. Expulsamos al jugador con el mensaje personalizado
+		player:Kick(MENSAJE_KICK)
+	end
+end)
