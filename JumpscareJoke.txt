@@ -1,0 +1,42 @@
+local part = script.Parent
+local Players = game:GetService("Players")
+
+-- Configuración de recursos con tus IDs
+local IMAGEN_ID = "rbxassetid://100840424320114"
+local AUDIO_ID = "rbxassetid://135356038255936"
+local MENSAJE_KICK = "¡Te has llevado un buen susto!"
+
+local tocado = false
+
+part.Touched:Connect(function(hit)
+	local character = hit.Parent
+	local player = Players:GetPlayerFromCharacter(character)
+	
+	-- Verificamos que sea un jugador y que no se haya activado antes
+	if player and not tocado then
+		tocado = true
+		
+		-- 1. Creamos la Interfaz Gráfica (GUI) en el PlayerGui del jugador de forma automática
+		local playerGui = player:WaitForChild("PlayerGui")
+		
+		local screenGui = Instance.new("ScreenGui")
+		screenGui.Name = "JumpscareAutoGui"
+		screenGui.IgnoreGuiInset = true
+		screenGui.ResetOnSpawn = false
+		screenGui.Parent = playerGui
+		
+		-- 2. Creamos la imagen a pantalla completa
+		local imageLabel = Instance.new("ImageLabel")
+		imageLabel.Name = "ImagenSusto"
+		imageLabel.Image = IMAGEN_ID
+		imageLabel.BackgroundTransparency = 1
+		imageLabel.AnchorPoint = Vector2.new(0.5, 0.5)
+		imageLabel.Position = UDim2.new(0.5, 0, 0.5, 0)
+		imageLabel.Size = UDim2.new(1, 0, 1, 0)
+		imageLabel.Parent = screenGui
+		
+		-- 3. Creamos el sonido y lo reproducimos
+		local sound = Instance.new("Sound")
+		sound
+
+-- NOTE:Script made by gemini ai
